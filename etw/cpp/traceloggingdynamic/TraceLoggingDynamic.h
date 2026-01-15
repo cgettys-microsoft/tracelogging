@@ -632,10 +632,7 @@ namespace tld
 
 #ifndef _tld_ASSERT
   #if TLD_DEBUG
-    // The below lambda should compile on both msvc's older preprocessor (i.e. /Zc:preprocessor-) and also msvc's modern preprocessor (/Zc:preprocessor)
-    // However, it does require at least C++11 support due to the use of lambdas. 
-    // If you need to support pre-C++11 compilers, you'll need to #define TLD_DEBUG 0 or #define _tld_ASSERT to something else before including this header.
-    #define _tld_ASSERT(exp, str) ((void)(!(exp) ? []()  { __annotation(L"Debug", L"AssertFail", L"TraceLogging: " #exp L" : " #str); DbgRaiseAssertionFailure(); return 0; }() : 0))
+    #define _tld_ASSERT(exp, str) ((void)(!(exp) ? (__annotation(L"Debug", L"AssertFail", L"TraceLogging: " #exp L" : " #str), DbgRaiseAssertionFailure(), 0) : 0))
   #else // TLD_DEBUG
     #define _tld_ASSERT(exp, str) ((void)0)
   #endif // TLD_DEBUG
