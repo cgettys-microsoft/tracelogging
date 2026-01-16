@@ -632,7 +632,7 @@ namespace tld
 
 #ifndef _tld_ASSERT
   #if TLD_DEBUG
-    #define _tld_ASSERT(exp, str) ((void)(!(exp) ? (__annotation(L"Debug", L"AssertFail", L"TraceLogging: " #exp L" : " #str), DbgRaiseAssertionFailure(), 0) : 0))
+    #define _tld_ASSERT(exp, str) ((void)(!(exp) ? (__annotation(L"Debug", L"AssertFail", L"TraceLogging: " #exp L" : " str), DbgRaiseAssertionFailure(), 0) : 0))
   #else // TLD_DEBUG
     #define _tld_ASSERT(exp, str) ((void)0)
   #endif // TLD_DEBUG
